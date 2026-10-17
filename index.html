@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>root@cyberhub:~ // Cybersecurity Resource Hub</title>
+<meta name="description" content="Free cybersecurity books, CTF platforms, wargames and learning resources.">
+<style>
+  :root{
+    --bg:#05080a; --panel:rgba(8,16,14,.82); --green:#00ff9c; --cyan:#00e5ff;
+    --magenta:#ff2e97; --amber:#ffb800; --dim:#6f8f86; --text:#cfeee3; --border:rgba(0,255,156,.25);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:"JetBrains Mono","Fira Code",Consolas,Menlo,monospace;line-height:1.6;min-height:100vh}
+  #rain{position:fixed;inset:0;z-index:0;opacity:.35}
+  body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:3;
+    background:repeating-linear-gradient(0deg,rgba(0,0,0,.18) 0 1px,transparent 1px 3px)}
+  a{color:var(--cyan);text-decoration:none}
+  a:hover{color:var(--green)}
+  .wrap{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:0 20px}
+
+  nav{position:sticky;top:0;z-index:5;background:rgba(5,8,10,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+  nav .wrap{display:flex;gap:18px;align-items:center;flex-wrap:wrap;padding:12px 20px}
+  nav .logo{color:var(--green);font-weight:700;margin-right:auto;text-shadow:0 0 8px var(--green)}
+  nav a{font-size:.85rem;color:var(--dim)}
+  nav a:hover{color:var(--green)}
+
+  header.hero{padding:70px 0 40px}
+  .glitch{font-size:clamp(2rem,6vw,4rem);font-weight:800;color:var(--green);position:relative;letter-spacing:-1px;
+    text-shadow:0 0 12px rgba(0,255,156,.6)}
+  .glitch::before,.glitch::after{content:attr(data-text);position:absolute;left:0;top:0;width:100%;overflow:hidden}
+  .glitch::before{color:var(--magenta);transform:translate(2px,0);clip-path:inset(0 0 60% 0);animation:g1 3s infinite steps(1)}
+  .glitch::after{color:var(--cyan);transform:translate(-2px,0);clip-path:inset(55% 0 0 0);animation:g2 2.6s infinite steps(1)}
+  @keyframes g1{0%,90%,100%{transform:translate(0)}92%{transform:translate(3px,-1px)}95%{transform:translate(-3px,1px)}}
+  @keyframes g2{0%,85%,100%{transform:translate(0)}88%{transform:translate(-3px,1px)}93%{transform:translate(3px,-1px)}}
+  .typed{margin-top:14px;color:var(--dim);font-size:1.05rem;min-height:1.6em}
+  .typed::after{content:"▌";color:var(--green);animation:blink 1s infinite}
+  @keyframes blink{50%{opacity:0}}
+
+  .terminal{margin-top:28px;background:var(--panel);border:1px solid var(--border);border-radius:10px;overflow:hidden;
+    box-shadow:0 0 30px rgba(0,255,156,.08)}
+  .terminal .bar{display:flex;gap:7px;padding:9px 12px;background:rgba(0,255,156,.06);border-bottom:1px solid var(--border);align-items:center}
+  .terminal .bar i{width:11px;height:11px;border-radius:50%;display:block}
+  .terminal .bar span{margin-left:10px;color:var(--dim);font-size:.75rem}
+  .terminal pre{padding:16px;font-size:.88rem;white-space:pre-wrap;color:var(--text)}
+  .p{color:var(--green)} .c{color:var(--cyan)} .m{color:var(--magenta)} .a{color:var(--amber)} .d{color:var(--dim)}
+
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:26px 0}
+  .stat{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:14px;text-align:center}
+  .stat b{display:block;font-size:1.8rem;color:var(--green);text-shadow:0 0 10px rgba(0,255,156,.5)}
+  .stat small{color:var(--dim)}
+
+  .search{position:sticky;top:50px;z-index:4;padding:12px 0;background:linear-gradient(var(--bg) 70%,transparent)}
+  .search input{width:100%;background:var(--panel);border:1px solid var(--border);color:var(--green);padding:12px 14px;border-radius:8px;
+    font:inherit;outline:none}
+  .search input:focus{border-color:var(--green);box-shadow:0 0 14px rgba(0,255,156,.25)}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .chip{background:transparent;border:1px solid var(--border);color:var(--dim);padding:4px 12px;border-radius:999px;font:inherit;font-size:.78rem;cursor:pointer}
+  .chip.on,.chip:hover{color:var(--bg);background:var(--green);border-color:var(--green)}
+
+  section{padding:36px 0 10px}
+  h2{font-size:1.5rem;color:var(--green);margin-bottom:6px}
+  h2::before{content:"$ ";color:var(--magenta)}
+  .sub{color:var(--dim);margin-bottom:18px;font-size:.9rem}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+  .card{display:block;background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:16px;color:var(--text);
+    transition:.2s;position:relative;overflow:hidden}
+  .card:hover{transform:translateY(-3px);border-color:var(--green);box-shadow:0 0 22px rgba(0,255,156,.18);color:var(--text)}
+  .card h3{color:var(--cyan);font-size:1.02rem;margin-bottom:6px}
+  .card p{font-size:.85rem;color:var(--dim)}
+  .tag{display:inline-block;font-size:.68rem;padding:1px 8px;border-radius:4px;margin-top:10px;margin-right:6px;border:1px solid}
+  .t-free{color:var(--green);border-color:var(--green)}
+  .t-fp{color:var(--amber);border-color:var(--amber)}
+  .t-lvl{color:var(--magenta);border-color:var(--magenta)}
+  .hidden{display:none!important}
+
+  .warn{margin:40px 0 10px;border:1px solid var(--magenta);border-radius:10px;padding:16px;background:rgba(255,46,151,.06);font-size:.88rem}
+  .warn b{color:var(--magenta)}
+  footer{padding:40px 0 60px;text-align:center;color:var(--dim);font-size:.8rem}
+  #empty{display:none;text-align:center;color:var(--amber);padding:30px}
+</style>
+</head>
+<body>
+<canvas id="rain"></canvas>
+
+<nav><div class="wrap">
+  <span class="logo">&gt;_ CYBERHUB</span>
+  <a href="#books">books</a><a href="#ctf">ctf</a><a href="#wargames">wargames</a>
+  <a href="#labs">labs</a><a href="#learn">learn</a><a href="#tools">tools</a><a href="#community">community</a>
+</div></nav>
+
+<div class="wrap">
+<header class="hero">
+  <h1 class="glitch" data-text="CYBERHUB">CYBERHUB</h1>
+  <div class="typed" id="typed"></div>
+
+  <div class="terminal">
+    <div class="bar"><i style="background:#ff5f56"></i><i style="background:#ffbd2e"></i><i style="background:#27c93f"></i><span>guest@cyberhub: ~</span></div>
+<pre><span class="p">guest@cyberhub</span>:<span class="c">~</span>$ cat mission.txt
+<span class="d">Free, legal, hand-picked resources to learn offensive &amp; defensive security.
+Read the books. Break the labs. Capture the flags. Stay ethical.</span>
+
+<span class="p">guest@cyberhub</span>:<span class="c">~</span>$ ./start --legal --ethical --curious
+<span class="a">[+] Loading resources ... done</span></pre>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b id="n-total">0</b><small>resources</small></div>
+    <div class="stat"><b id="n-books">0</b><small>free books</small></div>
+    <div class="stat"><b id="n-ctf">0</b><small>CTF / wargames</small></div>
+    <div class="stat"><b>$0</b><small>to get started</small></div>
+  </div>
+
+  <div class="search">
+    <input id="q" type="text" placeholder="grep -i  (try: web, crypto, beginner, pwn, malware...)" autocomplete="off" spellcheck="false">
+    <div class="chips" id="chips"></div>
+  </div>
+</header>
+
+<div id="empty">[!] no matches found. try a different keyword.</div>
+
+<section id="books">
+  <h2>free_books</h2>
+  <p class="sub">Legally free to read online or as PDF, offered by the authors or publishers themselves.</p>
+  <div class="grid" data-kind="book">
+    <a class="card" href="https://www.cl.cam.ac.uk/~rja14/book.html" target="_blank" rel="noopener" data-tags="security engineering systems intermediate book">
+      <h3>Security Engineering (Ross Anderson)</h3><p>The classic on building dependable systems. Full chapters free from the author.</p><span class="tag t-free">free PDF</span><span class="tag t-lvl">intermediate</span></a>
+    <a class="card" href="https://people.scs.carleton.ca/~paulv/toolsjewels.html" target="_blank" rel="noopener" data-tags="computer security internet tools jewels intermediate book">
+      <h3>Computer Security and the Internet</h3><p>Paul van Oorschot's textbook covering authentication, crypto, malware and web security.</p><span class="tag t-free">free PDF</span><span class="tag t-lvl">intermediate</span></a>
+    <a class="card" href="https://crypto.stanford.edu/~dabo/cryptobook/" target="_blank" rel="noopener" data-tags="cryptography applied math advanced book">
+      <h3>A Graduate Course in Applied Cryptography</h3><p>Boneh &amp; Shoup. Rigorous, modern cryptography draft, free from Stanford.</p><span class="tag t-free">free PDF</span><span class="tag t-lvl">advanced</span></a>
+    <a class="card" href="https://www.crypto101.io/" target="_blank" rel="noopener" data-tags="cryptography beginner book">
+      <h3>Crypto 101</h3><p>Friendly introduction to cryptography for programmers. Free PDF.</p><span class="tag t-free">free PDF</span><span class="tag t-lvl">beginner</span></a>
+    <a class="card" href="https://beginners.re/" target="_blank" rel="noopener" data-tags="reverse engineering assembly malware binary advanced book">
+      <h3>Reverse Engineering for Beginners</h3><p>Dennis Yurichev's huge guide to x86/ARM/MIPS assembly and RE. Free PDF.</p><span class="tag t-free">free PDF</span><span class="tag t-lvl">intermediate</span></a>
+    <a class="card" href="https://owasp.org/www-project-web-security-testing-guide/" target="_blank" rel="noopener" data-tags="web owasp pentest testing guide intermediate book">
+      <h3>OWASP Web Security Testing Guide</h3><p>The standard methodology for pentesting web apps. Free online and PDF.</p><span class="tag t-free">free</span><span class="tag t-lvl">intermediate</span></a>
+    <a class="card" href="https://nostarch.com/xboxfree" target="_blank" rel="noopener" data-tags="hardware hacking xbox reverse engineering book">
+      <h3>Hacking the Xbox (Andrew "bunnie" Huang)</h3><p>Hardware hacking and reverse engineering classic, released free by No Starch Press.</p><span class="tag t-free">free PDF</span><span class="tag t-lvl">intermediate</span></a>
+    <a class="card" href="https://linuxcommand.org/tlcl.php" target="_blank" rel="noopener" data-tags="linux command line shell beginner book">
+      <h3>The Linux Command Line</h3><p>Master the shell. Every hacker's foundation. Free PDF.</p><span class="tag t-free">free PDF</span><span class="tag t-lvl">beginner</span></a>
+    <a class="card" href="https://beej.us/guide/bgnet/" target="_blank" rel="noopener" data-tags="networking sockets c programming beginner book">
+      <h3>Beej's Guide to Network Programming</h3><p>Understand sockets and networking from the code up. Free HTML and PDF.</p><span class="tag t-free">free</span><span class="tag t-lvl">beginner</span></a>
+    <a class="card" href="https://github.com/OWASP/wstg" target="_blank" rel="noopener" data-tags="owasp github web source book">
+      <h3>OWASP WSTG on GitHub</h3><p>Source repo for the testing guide: fork it, read it, contribute.</p><span class="tag t-free">open source</span></a>
+  </div>
+</section>
+
+<section id="ctf">
+  <h2>ctf_platforms</h2>
+  <p class="sub">Capture the Flag: learn by solving puzzles in web, crypto, pwn, forensics and reversing.</p>
+  <div class="grid" data-kind="ctf">
+    <a class="card" href="https://picoctf.org/" target="_blank" rel="noopener" data-tags="beginner ctf carnegie mellon students web crypto forensics">
+      <h3>picoCTF</h3><p>Carnegie Mellon's beginner-friendly CTF with year-round practice gym.</p><span class="tag t-free">free</span><span class="tag t-lvl">beginner</span></a>
+    <a class="card" href="https://ctftime.org/" target="_blank" rel="noopener" data-tags="ctf calendar events teams rankings">
+      <h3>CTFtime</h3><p>Calendar of upcoming CTF events worldwide plus team rankings and writeups.</p><span class="tag t-free">free</span></a>
+    <a class="card" href="https://ctf101.org/" target="_blank" rel="noopener" data-tags="beginner ctf guide learn">
+      <h3>CTF 101</h3><p>Plain-English guide to how CTFs work and the main challenge categories.</p><span class="tag t-free">free</span><span class="tag t-lvl">beginner</span></a>
+    <a class="card" href="https://capturetheflag.withgoogle.com/" target="_blank" rel="noopener" data-tags="google ctf advanced pwn">
+      <h3>Google CTF</h3><p>Google's annual competition with archives of past challenges.</p><span class="tag t-free">free</span><span class="tag t-lvl">advanced</span></a>
+    <a class="card" href="https://cryptohack.org/" target="_blank" rel="noopener" data-tags="crypto cryptography math ctf learn">
+      <h3>CryptoHack</h3><p>Gamified cryptography challenges that teach modern attacks.</p><span class="tag t-free">free</span><span class="tag t-lvl">all levels</span></a>
+    <a class="card" href="https://cryptopals.com/" target="_blank" rel="noopener" data-tags="crypto cryptography programming intermediate">
+      <h3>Cryptopals</h3><p>Hands-on crypto challenges where you break real cipher implementations.</p><span class="tag t-free">free</span><span class="tag t-lvl">intermediate</span></a>
+    <a class="card" href="https://www.root-me.org/" target="_blank" rel="noopener" data-tags="web pwn forensics reverse ctf challenges">
+      <h3>Root Me</h3><p>Hundreds of challenges across web, cracking, forensics and more.</p><span class="tag t-free">free</span><span class="tag t-fp">premium option</span></a>
+    <a class="card" href="https://pwn.college/" target="_blank" rel="noopener" data-tags="pwn binary exploitation asu education">
+      <h3>pwn.college</h3><p>Arizona State University's free dojo for binary exploitation and systems security.</p><span class="tag t-free">free</span><span class="tag t-lvl">beginner to advanced</span></a>
+    <a class="card" href="https://microcorruption.com/" target="_blank" rel="noopener" data-tags="embedded assembly reverse engineering msp430 game">
+      <h3>Microcorruption</h3><p>Reverse engineer embedded lock firmware in a browser debugger.</p><span class="tag t-free">free</span><span class="tag t-lvl">intermediate</span></a>
+  </div>
+</section>
+
+<section id="wargames">
+  <h2>wargames</h2>
+  <p class="sub">Progressive levels that teach real skills, one flag at a time.</p>
+  <div class="grid" data-kind="ctf">
+    <a class="card" href="https://overthewire.org/wargames/" target="_blank" rel="noopener" data-tags="linux ssh bandit beginner wargame">
+      <h3>OverTheWire</h3><p>Start with Bandit to learn Linux and security basics over SSH.</p><span class="tag t-free">free</span><span class="tag t-lvl">beginner</span></a>
+    <a class="card" href="https://exploit.education/" target="_blank" rel="noopener" data-tags="binary exploitation pwn memory phoenix">
+      <h3>Exploit Education</h3><p>VMs for learning memory corruption and exploit development.</p><span class="tag t-free">free</span><span class="tag t-lvl">intermediate</span></a>
+    <a class="card" href="https://www.hackthissite.org/" target="_blank" rel="noopener" data-tags="web legal hacking beginner missions">
+      <h3>Hack This Site</h3><p>A long-running legal training ground with missions and a community.</p><span class="tag t-free">free</span><span class="tag t-lvl">beginner</span></a>
+    <a class="card" href="https://gandalf.lakera.ai/" target="_blank" rel="noopener" data-tags="ai llm prompt injection game fun">
+      <h3>Gandalf (Lakera)</h3><p>Trick an AI into revealing a password. A fun intro to prompt injection.</p><span class="tag t-free">free</span><span class="tag t-lvl">beginner</span></a>
+    <a class="card" href="https://www.vulnhub.com/" target="_blank" rel="noopener" data-tags="vm vulnerable boot2root pentest download">
+      <h3>VulnHub</h3><p>Download intentionally vulnerable VMs and root them locally.</p><span class="tag t-free">free</span><span class="tag t-lvl">all levels</span></a>
+  </div>
+</section>
+
+<section id="labs">
+  <h2>hands_on_labs</h2>
+  <p class="sub">Guided and self-hosted labs where you can safely practice attacking and defending.</p>
+  <div class="grid" data-kind="ctf">
+    <a class="card" href="https://portswigger.net/web-security" target="_blank" rel="noopener" data-tags="web sql injection xss burp labs beginner">
+      <h3>PortSwigger Web Security Academy</h3><p>Best free web hacking course with interactive labs for SQLi, XSS, SSRF and more.</p><span class="tag t-free">free</span><span class="tag t-lvl">beginner to advanced</span></a>
+    <a class="card" href="https://tryhackme.com/" target="_blank" rel="noopener" data-tags="beginner guided rooms browser labs pentest">
+      <h3>TryHackMe</h3><p>Guided, browser-based rooms for complete beginners.</p><span class="tag t-fp">freemium</span><span class="tag t-lvl">beginner</span></a>
+    <a class="card" href="https://www.hackthebox.com/" target="_blank" rel="noopener" data-tags="pentest machines challenges intermediate advanced">
+      <h3>Hack The Box</h3><p>Realistic machines and challenges, from starting point to elite.</p><span class="tag t-fp">freemium</span><span class="tag t-lvl">intermediate</span></a>
+    <a class="card" href="https://owasp.org/www-project-juice-shop/" target="_blank" rel="noopener" data-tags="web owasp vulnerable app practice">
+      <h3>OWASP Juice Shop</h3><p>A deliberately insecure web app to attack on your own machine.</p><span class="tag t-free">open source</span><span class="tag t-lvl">beginner</span></a>
+    <a class="card" href="https://cyberdefenders.org/" target="_blank" rel="noopener" data-tags="blue team dfir forensics soc defense">
+      <h3>CyberDefenders</h3><p>Blue team labs: forensics, threat hunting and incident response.</p><span class="tag t-fp">freemium</span><span class="tag t-lvl">intermediate</span></a>
+  </div>
+</section>
+
+<section id="learn">
+  <h2>learn_more</h2>
+  <p class="sub">Courses, frameworks and reference material.</p>
+  <div class="grid" data-kind="learn">
+    <a class="card" href="https://www.hacker101.com/" target="_blank" rel="noopener" data-tags="web bug bounty videos beginner hackerone">
+      <h3>Hacker101</h3><p>HackerOne's free video classes and CTF for aspiring bug bounty hunters.</p><span class="tag t-free">free</span><span class="tag t-lvl">beginner</span></a>
+    <a class="card" href="https://attack.mitre.org/" target="_blank" rel="noopener" data-tags="mitre attack framework red team blue team threat">
+      <h3>MITRE ATT&amp;CK</h3><p>Knowledge base of real adversary tactics and techniques.</p><span class="tag t-free">free</span><span class="tag t-lvl">intermediate</span></a>
+    <a class="card" href="https://owasp.org/www-project-top-ten/" target="_blank" rel="noopener" data-tags="owasp top ten web risks beginner">
+      <h3>OWASP Top 10</h3><p>The most critical web application security risks, explained.</p><span class="tag t-free">free</span><span class="tag t-lvl">beginner</span></a>
+    <a class="card" href="https://www.cve.org/" target="_blank" rel="noopener" data-tags="cve vulnerabilities database reference">
+      <h3>CVE Program</h3><p>Look up publicly disclosed vulnerabilities.</p><span class="tag t-free">free</span></a>
+    <a class="card" href="https://github.com/swisskyrepo/PayloadsAllTheThings" target="_blank" rel="noopener" data-tags="payloads web pentest cheatsheet github">
+      <h3>PayloadsAllTheThings</h3><p>Huge cheat sheet repo of payloads and bypass techniques for authorized testing.</p><span class="tag t-free">open source</span><span class="tag t-lvl">intermediate</span></a>
+    <a class="card" href="https://github.com/Hack-with-Github/Awesome-Hacking" target="_blank" rel="noopener" data-tags="awesome list github resources collection">
+      <h3>Awesome Hacking</h3><p>A curated collection of awesome security lists.</p><span class="tag t-free">open source</span></a>
+  </div>
+</section>
+
+<section id="tools">
+  <h2>toolbox</h2>
+  <p class="sub">Open-source tools for authorized testing and analysis. Only use on systems you own or have written permission to test.</p>
+  <div class="grid" data-kind="tool">
+    <a class="card" href="https://nmap.org/" target="_blank" rel="noopener" data-tags="network scanner recon tool">
+      <h3>Nmap</h3><p>The legendary network scanner for discovery and auditing.</p><span class="tag t-free">open source</span></a>
+    <a class="card" href="https://www.wireshark.org/" target="_blank" rel="noopener" data-tags="packet analysis network forensics tool">
+      <h3>Wireshark</h3><p>Inspect network traffic packet by packet.</p><span class="tag t-free">open source</span></a>
+    <a class="card" href="https://ghidra-sre.org/" target="_blank" rel="noopener" data-tags="reverse engineering disassembler nsa malware tool">
+      <h3>Ghidra</h3><p>NSA's free software reverse engineering suite.</p><span class="tag t-free">open source</span></a>
+    <a class="card" href="https://gchq.github.io/CyberChef/" target="_blank" rel="noopener" data-tags="decode encode crypto ctf swiss army knife tool">
+      <h3>CyberChef</h3><p>"The Cyber Swiss Army Knife" for encoding, decoding and crypto in the browser.</p><span class="tag t-free">free</span></a>
+    <a class="card" href="https://www.kali.org/" target="_blank" rel="noopener" data-tags="kali linux distro pentest tool">
+      <h3>Kali Linux</h3><p>Pentest-focused Linux distribution with hundreds of tools preinstalled.</p><span class="tag t-free">open source</span></a>
+    <a class="card" href="https://portswigger.net/burp/communitydownload" target="_blank" rel="noopener" data-tags="web proxy burp suite intercept tool">
+      <h3>Burp Suite Community</h3><p>The standard web proxy for intercepting and modifying requests.</p><span class="tag t-free">community edition</span></a>
+  </div>
+</section>
+
+<section id="community">
+  <h2>community</h2>
+  <p class="sub">Keep up with news, research and other learners.</p>
+  <div class="grid" data-kind="learn">
+    <a class="card" href="https://www.reddit.com/r/netsec/" target="_blank" rel="noopener" data-tags="news community reddit research">
+      <h3>r/netsec</h3><p>Technical security news, research and tools.</p><span class="tag t-free">free</span></a>
+    <a class="card" href="https://krebsonsecurity.com/" target="_blank" rel="noopener" data-tags="news blog investigations breaches">
+      <h3>Krebs on Security</h3><p>In-depth investigative reporting on cybercrime.</p><span class="tag t-free">free</span></a>
+    <a class="card" href="https://www.youtube.com/@LiveOverflow" target="_blank" rel="noopener" data-tags="youtube video hacking ctf reverse beginner">
+      <h3>LiveOverflow (YouTube)</h3><p>Beautifully explained hacking, CTF and exploitation videos.</p><span class="tag t-free">free</span></a>
+    <a class="card" href="https://www.youtube.com/@jhaddix" target="_blank" rel="noopener" data-tags="youtube video bug bounty web recon">
+      <h3>Jason Haddix (YouTube)</h3><p>Bug bounty and recon methodology from a veteran.</p><span class="tag t-free">free</span></a>
+  </div>
+</section>
+
+<div class="warn">
+  <b>[!] ETHICS &amp; LEGAL:</b> Everything here is for education and authorized security testing. Only test systems you own or have explicit written permission to test. Unauthorized access is illegal. Hack responsibly.
+</div>
+<footer>
+  &lt;/&gt; built for curious minds · <span id="year"></span> · <a href="#">back to top ↑</a>
+</footer>
+</div>
+
+<script>
+// Matrix rain
+(function(){
+  const c=document.getElementById('rain'),x=c.getContext('2d');
+  let w,h,cols,drops;
+  const chars='01アイウエオカキクケコサシスセソ<>{}[]#$%&=+*/\\|ABCDEF';
+  function size(){w=c.width=innerWidth;h=c.height=innerHeight;cols=Math.floor(w/16);drops=Array(cols).fill(0).map(()=>Math.random()*h/16)}
+  size();addEventListener('resize',size);
+  function draw(){
+    x.fillStyle='rgba(5,8,10,.08)';x.fillRect(0,0,w,h);
+    x.fillStyle='#00ff9c';x.font='15px monospace';
+    for(let i=0;i<cols;i++){
+      x.fillText(chars[Math.floor(Math.random()*chars.length)],i*16,drops[i]*16);
+      if(drops[i]*16>h&&Math.random()>.975)drops[i]=0;
+      drops[i]++;
+    }
+  }
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches)setInterval(draw,50);
+})();
+
+// Typing effect
+(function(){
+  const lines=['Learn. Hack. Defend.','Free books, CTFs, wargames and labs.','The best way to learn security is to break things legally.'];
+  const el=document.getElementById('typed');let li=0,ci=0,del=false;
+  function tick(){
+    const s=lines[li];
+    el.textContent=s.slice(0,ci);
+    if(!del&&ci<s.length){ci++;setTimeout(tick,55)}
+    else if(!del){del=true;setTimeout(tick,1600)}
+    else if(ci>0){ci--;setTimeout(tick,25)}
+    else{del=false;li=(li+1)%lines.length;setTimeout(tick,300)}
+  }
+  tick();
+})();
+
+// Stats, filter, chips
+(function(){
+  const cards=[...document.querySelectorAll('.card')];
+  document.getElementById('n-total').textContent=cards.length;
+  document.getElementById('n-books').textContent=document.querySelectorAll('#books .card').length;
+  document.getElementById('n-ctf').textContent=document.querySelectorAll('#ctf .card, #wargames .card').length;
+  document.getElementById('year').textContent=new Date().getFullYear();
+
+  const q=document.getElementById('q'),chips=document.getElementById('chips'),empty=document.getElementById('empty');
+  const topics=['all','beginner','web','crypto','pwn','reverse','forensics','linux','free'];
+  let active='all';
+  topics.forEach(t=>{
+    const b=document.createElement('button');b.className='chip'+(t==='all'?' on':'');b.textContent=t;
+    b.onclick=()=>{active=t;[...chips.children].forEach(c=>c.classList.toggle('on',c===b));apply()};
+    chips.appendChild(b);
+  });
+
+  function apply(){
+    const term=q.value.trim().toLowerCase();
+    let shown=0;
+    cards.forEach(card=>{
+      const hay=(card.textContent+' '+card.dataset.tags).toLowerCase();
+      let ok=!term||hay.includes(term);
+      if(ok&&active!=='all'){
+        const key=active==='reverse'?'reverse':active==='pwn'?'pwn':active;
+        ok=hay.includes(key);
+      }
+      card.classList.toggle('hidden',!ok);
+      if(ok)shown++;
+    });
+    document.querySelectorAll('section').forEach(s=>{
+      s.classList.toggle('hidden',!s.querySelector('.card:not(.hidden)'));
+    });
+    empty.style.display=shown?'none':'block';
+  }
+  q.addEventListener('input',apply);
+})();
+</script>
+</body>
+</html>
