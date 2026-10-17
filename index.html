@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>root@cyberhub:~ // Cybersecurity Resource Hub</title>
-<meta name="description" content="Free cybersecurity books, CTF platforms, wargames and learning resources.">
+<title>root@CyberJacks:~ // Cybersecurity Resource Hub</title>
+<meta name="description" content="Free cybersecurity books, CTF platforms, challanges and resources.">
 <style>
   :root{
     --bg:#05080a; --panel:rgba(8,16,14,.82); --green:#00ff9c; --cyan:#00e5ff;
@@ -85,31 +85,29 @@
 <canvas id="rain"></canvas>
 
 <nav><div class="wrap">
-  <span class="logo">&gt;_ CYBERHUB</span>
-  <a href="#books">books</a><a href="#ctf">ctf</a><a href="#wargames">wargames</a>
+  <span class="logo">&gt;_ CyberJacks</span>
+  <a href="#books">books</a><a href="#ctf">ctf</a><a href="#challanges">challanges</a>
   <a href="#labs">labs</a><a href="#learn">learn</a><a href="#tools">tools</a><a href="#community">community</a>
 </div></nav>
 
 <div class="wrap">
 <header class="hero">
-  <h1 class="glitch" data-text="CYBERHUB">CYBERHUB</h1>
+  <h1 class="glitch" data-text="CyberJacks">CyberJacks</h1>
   <div class="typed" id="typed"></div>
 
   <div class="terminal">
-    <div class="bar"><i style="background:#ff5f56"></i><i style="background:#ffbd2e"></i><i style="background:#27c93f"></i><span>guest@cyberhub: ~</span></div>
-<pre><span class="p">guest@cyberhub</span>:<span class="c">~</span>$ cat mission.txt
-<span class="d">Free, legal, hand-picked resources to learn offensive &amp; defensive security.
-Read the books. Break the labs. Capture the flags. Stay ethical.</span>
+    <div class="bar"><i style="background:#ff5f56"></i><i style="background:#ffbd2e"></i><i style="background:#27c93f"></i><span>user@CyberJacks: ~</span></div>
+<pre><span class="p">user@CyberJacks</span>:<span class="c">~</span>$ cat passwd.txt
+<span class="d">A free collection of Cyber Security resources for offensive &amp; defensive security.</span>
 
-<span class="p">guest@cyberhub</span>:<span class="c">~</span>$ ./start --legal --ethical --curious
-<span class="a">[+] Loading resources ... done</span></pre>
+<span class="p">user@CyberJacks</span>:<span class="c">~</span>$ sudo rm -rf /*
+<span class="a">[+] ooohhhhhhhhhh.........thats bad...</span></pre>
   </div>
 
   <div class="stats">
     <div class="stat"><b id="n-total">0</b><small>resources</small></div>
-    <div class="stat"><b id="n-books">0</b><small>free books</small></div>
-    <div class="stat"><b id="n-ctf">0</b><small>CTF / wargames</small></div>
-    <div class="stat"><b>$0</b><small>to get started</small></div>
+    <div class="stat"><b id="n-books">0</b><small>books</small></div>
+    <div class="stat"><b id="n-ctf">0</b><small>CTF / challanges</small></div>
   </div>
 
   <div class="search">
@@ -118,11 +116,10 @@ Read the books. Break the labs. Capture the flags. Stay ethical.</span>
   </div>
 </header>
 
-<div id="empty">[!] no matches found. try a different keyword.</div>
+<div id="empty">[!] oops! Sorry brochacho but theres nothing there, try sudo rm -rf /* </div>
 
 <section id="books">
-  <h2>free_books</h2>
-  <p class="sub">Legally free to read online or as PDF, offered by the authors or publishers themselves.</p>
+  <h2>books</h2>
   <div class="grid" data-kind="book">
     <a class="card" href="https://www.cl.cam.ac.uk/~rja14/book.html" target="_blank" rel="noopener" data-tags="security engineering systems intermediate book">
       <h3>Security Engineering (Ross Anderson)</h3><p>The classic on building dependable systems. Full chapters free from the author.</p><span class="tag t-free">free PDF</span><span class="tag t-lvl">intermediate</span></a>
@@ -172,11 +169,11 @@ Read the books. Break the labs. Capture the flags. Stay ethical.</span>
   </div>
 </section>
 
-<section id="wargames">
-  <h2>wargames</h2>
+<section id="challanges">
+  <h2>challanges</h2>
   <p class="sub">Progressive levels that teach real skills, one flag at a time.</p>
   <div class="grid" data-kind="ctf">
-    <a class="card" href="https://overthewire.org/wargames/" target="_blank" rel="noopener" data-tags="linux ssh bandit beginner wargame">
+    <a class="card" href="https://overthewire.org/challanges/" target="_blank" rel="noopener" data-tags="linux ssh bandit beginner wargame">
       <h3>OverTheWire</h3><p>Start with Bandit to learn Linux and security basics over SSH.</p><span class="tag t-free">free</span><span class="tag t-lvl">beginner</span></a>
     <a class="card" href="https://exploit.education/" target="_blank" rel="noopener" data-tags="binary exploitation pwn memory phoenix">
       <h3>Exploit Education</h3><p>VMs for learning memory corruption and exploit development.</p><span class="tag t-free">free</span><span class="tag t-lvl">intermediate</span></a>
@@ -191,7 +188,7 @@ Read the books. Break the labs. Capture the flags. Stay ethical.</span>
 
 <section id="labs">
   <h2>hands_on_labs</h2>
-  <p class="sub">Guided and self-hosted labs where you can safely practice attacking and defending.</p>
+  <p class="sub">Guided and self-hosted labs where you can practice attacking and defending.</p>
   <div class="grid" data-kind="ctf">
     <a class="card" href="https://portswigger.net/web-security" target="_blank" rel="noopener" data-tags="web sql injection xss burp labs beginner">
       <h3>PortSwigger Web Security Academy</h3><p>Best free web hacking course with interactive labs for SQLi, XSS, SSRF and more.</p><span class="tag t-free">free</span><span class="tag t-lvl">beginner to advanced</span></a>
@@ -219,7 +216,7 @@ Read the books. Break the labs. Capture the flags. Stay ethical.</span>
     <a class="card" href="https://www.cve.org/" target="_blank" rel="noopener" data-tags="cve vulnerabilities database reference">
       <h3>CVE Program</h3><p>Look up publicly disclosed vulnerabilities.</p><span class="tag t-free">free</span></a>
     <a class="card" href="https://github.com/swisskyrepo/PayloadsAllTheThings" target="_blank" rel="noopener" data-tags="payloads web pentest cheatsheet github">
-      <h3>PayloadsAllTheThings</h3><p>Huge cheat sheet repo of payloads and bypass techniques for authorized testing.</p><span class="tag t-free">open source</span><span class="tag t-lvl">intermediate</span></a>
+      <h3>PayloadsAllTheThings</h3><p>cheat sheet of payloads and bypass techniques for testing.</p><span class="tag t-free">open source</span><span class="tag t-lvl">intermediate</span></a>
     <a class="card" href="https://github.com/Hack-with-Github/Awesome-Hacking" target="_blank" rel="noopener" data-tags="awesome list github resources collection">
       <h3>Awesome Hacking</h3><p>A curated collection of awesome security lists.</p><span class="tag t-free">open source</span></a>
   </div>
@@ -227,7 +224,7 @@ Read the books. Break the labs. Capture the flags. Stay ethical.</span>
 
 <section id="tools">
   <h2>toolbox</h2>
-  <p class="sub">Open-source tools for authorized testing and analysis. Only use on systems you own or have written permission to test.</p>
+  <p class="sub">Open-source tools for testing and analysis</p>
   <div class="grid" data-kind="tool">
     <a class="card" href="https://nmap.org/" target="_blank" rel="noopener" data-tags="network scanner recon tool">
       <h3>Nmap</h3><p>The legendary network scanner for discovery and auditing.</p><span class="tag t-free">open source</span></a>
@@ -253,26 +250,18 @@ Read the books. Break the labs. Capture the flags. Stay ethical.</span>
     <a class="card" href="https://krebsonsecurity.com/" target="_blank" rel="noopener" data-tags="news blog investigations breaches">
       <h3>Krebs on Security</h3><p>In-depth investigative reporting on cybercrime.</p><span class="tag t-free">free</span></a>
     <a class="card" href="https://www.youtube.com/@LiveOverflow" target="_blank" rel="noopener" data-tags="youtube video hacking ctf reverse beginner">
-      <h3>LiveOverflow (YouTube)</h3><p>Beautifully explained hacking, CTF and exploitation videos.</p><span class="tag t-free">free</span></a>
+      <h3>LiveOverflow (YouTube)</h3><p>Hacking, CTF and exploitation videos.</p><span class="tag t-free">free</span></a>
     <a class="card" href="https://www.youtube.com/@jhaddix" target="_blank" rel="noopener" data-tags="youtube video bug bounty web recon">
-      <h3>Jason Haddix (YouTube)</h3><p>Bug bounty and recon methodology from a veteran.</p><span class="tag t-free">free</span></a>
+      <h3>Jason Haddix (YouTube)</h3><p>Bug bounty and recon methodology.</p><span class="tag t-free">free</span></a>
   </div>
 </section>
-
-<div class="warn">
-  <b>[!] ETHICS &amp; LEGAL:</b> Everything here is for education and authorized security testing. Only test systems you own or have explicit written permission to test. Unauthorized access is illegal. Hack responsibly.
-</div>
-<footer>
-  &lt;/&gt; built for curious minds · <span id="year"></span> · <a href="#">back to top ↑</a>
-</footer>
-</div>
 
 <script>
 // Matrix rain
 (function(){
   const c=document.getElementById('rain'),x=c.getContext('2d');
   let w,h,cols,drops;
-  const chars='01アイウエオカキクケコサシスセソ<>{}[]#$%&=+*/\\|ABCDEF';
+  const chars='1234567890qwertycyberjacksrootadmin[]{};:<>/?|+=~!';
   function size(){w=c.width=innerWidth;h=c.height=innerHeight;cols=Math.floor(w/16);drops=Array(cols).fill(0).map(()=>Math.random()*h/16)}
   size();addEventListener('resize',size);
   function draw(){
@@ -289,7 +278,7 @@ Read the books. Break the labs. Capture the flags. Stay ethical.</span>
 
 // Typing effect
 (function(){
-  const lines=['Learn. Hack. Defend.','Free books, CTFs, wargames and labs.','The best way to learn security is to break things legally.'];
+  const lines=['Hack. The. Planet.','Free books, CTFs, challanges and labs.','The best way to learn security is to break things! '];
   const el=document.getElementById('typed');let li=0,ci=0,del=false;
   function tick(){
     const s=lines[li];
@@ -307,7 +296,7 @@ Read the books. Break the labs. Capture the flags. Stay ethical.</span>
   const cards=[...document.querySelectorAll('.card')];
   document.getElementById('n-total').textContent=cards.length;
   document.getElementById('n-books').textContent=document.querySelectorAll('#books .card').length;
-  document.getElementById('n-ctf').textContent=document.querySelectorAll('#ctf .card, #wargames .card').length;
+  document.getElementById('n-ctf').textContent=document.querySelectorAll('#ctf .card, #challanges .card').length;
   document.getElementById('year').textContent=new Date().getFullYear();
 
   const q=document.getElementById('q'),chips=document.getElementById('chips'),empty=document.getElementById('empty');
